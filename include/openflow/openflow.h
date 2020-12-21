@@ -68,7 +68,7 @@
  * be set to zero.
  */
 #define OFP_VERSION   0x04
-#define PIPELINE_TABLES 64
+#define PIPELINE_TABLES 255
 #define OFP_MAX_TABLE_NAME_LEN 32
 #define OFP_MAX_PORT_NAME_LEN  16
 /* Official IANA registered port for OpenFlow. */
@@ -2318,15 +2318,15 @@ enum ofp_controller_role {
 
 /* Role request and reply message. */
 struct ofp_role_request {
-    struct ofp_header header;   /* Type OFPT_ROLE_REQUEST/OFPT_ROLE_REPLY. */
-    uint32_t role;              /* One of OFPCR_ROLE_*. */
-    uint8_t pad[4];             /* Align to 64 bits. */
-    uint64_t generation_id;     /* Master Election Generation Id */
+    struct ofp_header header; /* Type OFPT_ROLE_REQUEST/OFPT_ROLE_REPLY. */
+    uint32_t role;            /* One of OFPCR_ROLE_*. */
+    uint8_t pad[4];           /* Align to 64 bits. */
+    uint64_t generation_id;   /* Master Election Generation Id */
 };
 OFP_ASSERT(sizeof(struct ofp_role_request) == 24);
 
 /* Asynchronous message configuration. */
-struct ofp_async_config {
+struct ofp_async_config{
     struct ofp_header header;     /* OFPT_GET_ASYNC_REPLY or OFPT_SET_ASYNC. */
     uint32_t packet_in_mask[2];   /* Bitmasks of OFPR_* values. */
     uint32_t port_status_mask[2]; /* Bitmasks of OFPPR_* values. */
